@@ -1,7 +1,7 @@
 <x-guest-layout>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6 dark">
             <div class="flex justify-between mt-8">
                 <div class=" text-2xl">
 
@@ -9,12 +9,12 @@
                 </div>
             </div>
 @if($battle->memes->count() < 10)
-    <form action="{{ route('battles.memes.store', $battle->id) }}" method="POST" enctype="multipart/form-data" class="flex flex-col space-y-4 text-gray-500">
+    <form action="{{ route('battles.memes.store', $battle->id) }}" method="POST" enctype="multipart/form-data" class="flex flex-col space-y-4 text-gray-200">
         @csrf
 
         <div>
-            <x-input-label for="img_path" :value="__('Image:')" />
-            <x-text-input  type="file" name="img_path" id="img_path" required/>
+            <x-input-label for="img_path" :value="__('Image:')" class='text-white'  />
+             <x-text-input  type="file" class='file:bg-gray-700 file:text-white' name="img_path" id="img_path" required/>
             @error('img_path')
                 <div class="text-red-500">{{ $message }}</div>
             @enderror
@@ -28,7 +28,7 @@
 
                     <div class="mt-8 flex items-center justify-center">
 
-                    <a href="{{ route('battles.show', $battle->id) }}" class='font-bold bg-white text-gray-700 px-4 py-2 rounded shadow'>
+                    <a href="{{ route('battles.show', $battle->id) }}" class='font-bold bg-white text-gray-700 px-4 py-2 rounded shadow dark'>
                         {{ __('Retour au battle') }}
                     </a>
               

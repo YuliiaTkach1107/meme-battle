@@ -8,9 +8,12 @@ use App\Models\Meme;
 use App\Models\Battle;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 
 class MemeController extends Controller
 {
+      use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -54,7 +57,7 @@ class MemeController extends Controller
         }
 
 
-        $meme->save();
+            $meme->save();
 
         return redirect()->route('battles.show', $battle->id)->with('success', 'Mème ajouté !');
     }
@@ -65,7 +68,7 @@ class MemeController extends Controller
     public function show(Meme $meme, Request $request)
    {
 
-    $from = $request->query('from', 'all'); // 'battle' ou 'all'
+        $from = $request->query('from', 'all'); // 'battle' ou 'all'
 
     return view('memes.show', compact('meme', 'from'));
    }
@@ -107,16 +110,16 @@ class MemeController extends Controller
         $meme->delete();
 
         return redirect()->back();
-}
-
-public function download(Meme $meme)
-{
-    
-    if (!Storage::disk('public')->exists($meme->img_path)) {
-        return redirect()->back()->with('error', 'Le fichier n\'existe pas.');
     }
+
+    public function download(Meme $meme)
+    {
+    
+        if (!Storage::disk('public')->exists($meme->img_path)) {
+            return redirect()->back()->with('error', 'Le fichier n\'existe pas.');
+       }
 
     
     return Storage::disk('public')->download($meme->img_path);
-}
+   }
 }

@@ -7,7 +7,7 @@
   />
   @else
   <div class="w-full h-full aspect-square flex items-center justify-center bg-indigo-100">
-    <span class="text-2xl font-medium text-indigo-800">
+    <span class="text-2xl font-medium text-indigo-800 ">
       {{ $user->name[0] }}
     </span>
   </div>

@@ -10,46 +10,50 @@
         {{ session('error') }}
     </div>
 @endif
+
     <h1 class="font-bold text-xl mb-4">Liste des battles</h1>
 
-    <form action="{{ route('battles.index') }}" method="GET" class="flex items-center space-x-2">
+    <form action="{{ route('battles.index') }}" method="GET" class="flex items-center space-x-2 ">
     <input 
         type="text" 
         name="search" 
         placeholder="Rechercher des battles..." 
         value="{{ request('search') }}" 
-        class="border rounded px-3 py-1 w-full"
+        class="border rounded px-3 py-1 w-full dark"
     >
-    <button type="submit" class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow ">
+    <button type="submit" class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow dark">
         Trouver
     </button>
 </form>
 
 <form action="{{ route('battles.index') }}" method="GET" class="flex items-center  space-x-2">
-<select name='status' class="border rounded px-3 py-1">
+<select name='status' class="border rounded px-3 py-1 dark">
     <option value=""> Tous </option>
     <option value="open"{{ request('status')=='open'? 'selected':'' }}>Ouvert</option>
     <option value="closed"{{ request('status')=='closed'? 'selected':'' }}>Clos</option>
 </select>
 
-<button type="submit" class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow ">
+<button type="submit" class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow dark">
         Appliquer
     </button>
 </form>
 
     <div class="flex  items-center justify-end space-x-8 mb-8">
                             <a href="{{ route('battles.create') }}"
-                                class="text-gray-500 font-bold py-2 px-4 rounded hover:bg-gray-200 transition">
+                                class="text-gray-200 font-bold py-2 px-4 rounded hover:bg-gray-600 transition">
                                  <x-heroicon-o-plus class="w-4 h-4 mr-2" />
                                 Ajouter une battle </a>
     </div>
-    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8">
+    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 ">
         @foreach ($battles as $battle)
            <li>
             <x-battle-card :battle="$battle"/>
            </li>
         @endforeach
     </ul>
+   
     {{ $battles->links() }}
+   
+    
 </x-guest-layout>
 

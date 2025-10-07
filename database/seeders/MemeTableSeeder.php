@@ -39,13 +39,13 @@ class MemeTableSeeder extends Seeder
         $battles = Battle::all();
 
         foreach ($battles as $battle) {
-            // Удаляем лишние мемы, если их больше 4
+        
             $existingMemes = $battle->memes()->get();
             if ($existingMemes->count() > 4) {
                 $existingMemes->slice(4)->each->delete();
             }
 
-            // Сколько мемов нужно добавить, чтобы стало ровно 4
+            
             $memesToAdd = 4 - $battle->memes()->count();
 
             if ($memesToAdd > 0) {

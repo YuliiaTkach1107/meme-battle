@@ -13,21 +13,13 @@ use App\Models\Meme;
 
 class ProfileController extends Controller
 
-
 {
-    /*public function index()
-    {
-        $battles = Battle::where('user_id', Auth::id())->orderByDesc('created_at')->get();
-
-        return view('profile.index', compact('battles'));
-    }*/
-
-        public function index()
+    public function index()
 {
-    $user = Auth::user(); // текущий пользователь
-    $battles = Battle::where('user_id', $user->id)
-                     ->orderByDesc('created_at')
-                     ->get();
+       $user = Auth::user(); // текущий пользователь
+       $battles = Battle::where('user_id', $user->id)
+                        ->orderByDesc('created_at')
+                        ->get();
 
     return view('profile.index', compact('battles', 'user'));
 }

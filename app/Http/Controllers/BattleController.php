@@ -8,11 +8,15 @@ use App\Models\Meme;
 use App\Http\Requests\BattleCreateRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 use Illuminate\Support\Facades\Gate;
 
 class BattleController extends Controller
 {
-    public function index(Request $request){
+      use AuthorizesRequests;
+      
+      public function index(Request $request){
         Battle::where('end_date', '<', now()->subHours(24))->delete();
 
         $query = Battle::query();
@@ -32,7 +36,7 @@ class BattleController extends Controller
         $battles = $query->orderByDesc('start_date')->paginate(10)
                    ->appends($request->all());
 
-        //$battles = Battle::paginate(10);
+        
 
         return view('battles.index',[
             'battles'=>$battles,
@@ -42,7 +46,7 @@ class BattleController extends Controller
 
     public function show(Request $request, $id)
     {
-       //$battle = Battle::findOrFail($id);
+      
        $battle = Battle::with('memes.votes')->findOrFail($id);
        $from = $request->query('from', 'index');
 

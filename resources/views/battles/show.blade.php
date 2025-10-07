@@ -23,18 +23,18 @@
 
 @if ($battle->end_date < now())
     <div class="flex items-center justify-end space-x-8 mb-8">
-        <p class="font-bold text-right">La battle est terminée</p>
+        <p class="font-bold text-right text-gray-200">La battle est terminée</p>
     </div>
     @if($winner)
 
-    <h2 class="font-bold text-center text-xl mb-4 ">Mème gagnant :</h2>
+    <h2 class="font-bold text-center text-xl mb-4 text-gray-200 ">Mème gagnant :</h2>
     <a href="{{ route('memes.show', $winner->id) }}">
     
         <img src="{{ asset('storage/' . $winner->img_path) }}" alt="Winner" class=" w-100 h-100 justify-center">
     </a>
     
     @else
-        <p class='font-bold text-center text-xl '>Aucun gagnant pour ce battle.</p>
+        <p class='font-bold text-center text-xl text-gray-200 '>Aucun gagnant pour ce battle.</p>
     @endif
 @elseif ($battle->memes->count() >= 4)
     <div class="flex items-center justify-end space-x-8 mb-8">
@@ -43,7 +43,7 @@
 @else
     <div class="flex items-center justify-end space-x-8 mb-8">
         <a href="{{ route('battles.memes.create', $battle->id) }}"
-           class="text-gray-500 font-bold py-2 px-4 rounded hover:bg-gray-200 transition">
+           class="text-gray-200 font-bold py-2 px-4 rounded hover:bg-gray-600 transition">
             <x-heroicon-o-plus class="w-4 h-4 mr-2" />
             Ajouter un mème
         </a>
@@ -69,12 +69,12 @@
         @if(!$userVoteForThisMeme)
           <form action="{{ route('votes.store', ['battle' => $battle->id, 'meme' => $meme->id]) }}" method="POST">
             @csrf
-            <button type='submit' class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow mt-4">
+            <button type='submit' class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow mt-4 dark">
               Voter pour ce mème
             </button>
           </form>
           @else
-          <p class="mt-2 text-gray-700 font-semibold">
+          <p class="mt-2 text-gray-200 font-semibold">
             Score : {{ $meme->votes()->count() }}
           </p>
         @endif
@@ -90,27 +90,21 @@ $winner = $battle->winnerMeme()
   <div class="flex mt-8">
     <div class="ml-4 flex flex-col justify-center">
         <x-avatar class="h-20 w-20" :user="$battle->user" />
-      <div class="text-gray-700">{{ $battle->user->name }}</div>
-      <div class="text-gray-500">{{ $battle->user->email }}</div>
+      <div class="text-gray-400">{{ $battle->user->name }}</div>
+      <div class="text-gray-300">{{ $battle->user->email }}</div>
     </div>
   </div>
 
-  <!--<div class="mt-8 flex items-center justify-center ">
-    <a
-      href="{{ route('battles.index') }}" class='font-bold bg-white text-gray-700 px-4 py-2 rounded shadow' >
-      Retour à la liste des battles
-    </a>
-  </div>-->
 
-  <div class="mt-8 flex items-center justify-center">
+  <div class="mt-8 flex items-center justify-center ">
     @if ($from === 'profile')
         <a href="{{ route('profile.my-battles') }}" 
-           class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow">
+           class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow dark">
            Retour à mon profil
         </a>
     @else
         <a href="{{ route('battles.index') }}" 
-           class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow">
+           class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow dark">
            Retour à la liste des battles
         </a>
     @endif

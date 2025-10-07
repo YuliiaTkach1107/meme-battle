@@ -30,7 +30,6 @@ class BattleFactory extends Factory
             'description'=>fake()->sentence(3),
             'start_date' => $start = fake()->dateTimeBetween('-1 week','now'), 
             'end_date' => fake()->dateTimeBetween($start, '+2 weeks'),
-            //'user_id' => User::get()->random()->id,
             'user_id' => $user->id,
             
         ];

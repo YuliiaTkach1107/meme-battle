@@ -14,27 +14,27 @@
 
 
         
-        <p class="mt-4 text-gray-700 font-semibold">
+        <p class="mt-4 text-gray-200 font-semibold">
             Auteur: {{ $meme->user->name }}
         </p>
 
         <div class="mt-4">
         @if($from === 'battle')
-        <div class="mt-8 flex items-center justify-center">
+        <div class="mt-8 flex items-center justify-center ">
             <a href="{{ route('battles.show', $meme->battle_id) }}" 
-                 class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow">
+                 class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow dark">
                 Retour au battle
             </a>
         </div>
         @elseif ($from === 'profile')
         <a href="{{ route('profile.my-memes') }}" 
-           class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow">
-           Retour à mon profil
+           class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow dark">
+           Retour à mon profile
         </a>
         @else
         <div class="mt-8 flex items-center justify-center">
             <a href="{{ route('memes.index') }}" 
-              class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow"
+              class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow dark"
             >
                 Retour à la liste des memes
             </a>

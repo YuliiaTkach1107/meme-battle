@@ -1,10 +1,10 @@
 <section>
   <header>
-    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+    <h2 class="text-lg font-medium text-gray-300 ">
       {{ __('Avatar') }}
     </h2>
 
-    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+    <p class="mt-1 text-sm text-gray-400 ">
       {{ __('Here you can change your avatar. It will be displayed on your
       profile and on your articles.') }}
     </p>
@@ -13,7 +13,7 @@
   <form
     method="post"
     action="{{ route('profile.avatar.update') }}"
-    class="mt-6 space-y-6"
+    class="mt-6 space-y-6 text-gray-200 "
     enctype="multipart/form-data"
   >
     @csrf @method('patch')
@@ -24,7 +24,7 @@
       <div class="">
         <label
           for="avatar"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-200"
+          class="block text-sm font-medium text-gray-300 dark:text-gray-200"
         >
           {{ __('Avatar') }}
         </label>
@@ -34,7 +34,7 @@
             type="file"
             name="avatar"
             id="avatar"
-            class="block w-full shadow-sm sm:text-sm dark:bg-gray-700 dark:border-gray-700 dark:text-gray-200 dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:placeholder-gray-400 dark:focus:ring-opacity-50 dark:focus:ring-offset-gray-800 dark:focus:ring-offset-opacity-50 dark:ring-offset-gray-800 dark:ring-offset-opacity-50 dark:ring-gray-500 dark:ring-opacity-50 rounded-md"
+            class="block w-full file:bg-gray-700 file:text-gray-200 shadow-sm sm:text-sm dark:bg-gray-700 dark:border-gray-700 dark:text-gray-200 dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:placeholder-gray-400 dark:focus:ring-opacity-50 dark:focus:ring-offset-gray-800 dark:focus:ring-offset-opacity-50 dark:ring-offset-gray-800 dark:ring-offset-opacity-50 dark:ring-gray-500 dark:ring-opacity-50 rounded-md"
           />
         </div>
 
